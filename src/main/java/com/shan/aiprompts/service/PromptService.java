@@ -18,7 +18,7 @@ public class PromptService {
         return repository.findAll();
     }
 
-    public Prompt createPrompt(Prompt prompt) {
+    public Prompt savePrompt(Prompt prompt) {
         return repository.save(prompt);
     }
 
@@ -27,10 +27,10 @@ public class PromptService {
     }
 
     public Prompt updatePrompt(Long id, Prompt updatedPrompt) {
-    Prompt existing = repository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Prompt not found"));
+        Prompt existing = repository.findById(id).orElseThrow();
 
-    existing.setText(updatedPrompt.getText());
-    return repository.save(existing);
-}
+        existing.setText(updatedPrompt.getText());
+
+        return repository.save(existing);
+    }
 }
